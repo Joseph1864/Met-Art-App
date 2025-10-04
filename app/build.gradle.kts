@@ -6,11 +6,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.applicationtemplate"
+    namespace = "com.example.metartapp"
     compileSdk = 36
 
     defaultConfig {
-        applicationId = "com.example.applicationtemplate"
+        applicationId = "com.example.metartapp"
         minSdk = 24
         targetSdk = 36
         versionCode = 1

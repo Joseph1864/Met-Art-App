@@ -1,4 +1,4 @@
-package com.example.applicationtemplate.screens.home
+package com.example.metartapp.screens.home
 
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
