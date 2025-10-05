@@ -84,6 +84,8 @@ dependencies {
     implementation (libs.koin.core)
     testImplementation (libs.koin.test)
 
+    //Moshi
+    implementation (libs.moshi.kotlin)
 
     //Navigation
     implementation (libs.androidx.navigation.compose)
