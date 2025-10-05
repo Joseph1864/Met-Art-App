@@ -63,6 +63,7 @@ dependencies {
     //Retrofit
     implementation (libs.retrofit)
     implementation (libs.converter.gson)
+    implementation (libs.converter.moshi)
     implementation (libs.okhttp)
     implementation (libs.logging.interceptor)
 
@@ -82,6 +83,7 @@ dependencies {
     implementation (libs.koin.androidx.compose)
     implementation (libs.koin.core)
     testImplementation (libs.koin.test)
+
 
     //Navigation
     implementation (libs.androidx.navigation.compose)
