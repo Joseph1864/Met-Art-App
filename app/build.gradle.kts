@@ -6,11 +6,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.applicationtemplate"
+    namespace = "com.example.metartapp"
     compileSdk = 36
 
     defaultConfig {
-        applicationId = "com.example.applicationtemplate"
+        applicationId = "com.example.metartapp"
         minSdk = 24
         targetSdk = 36
         versionCode = 1
@@ -63,6 +63,7 @@ dependencies {
     //Retrofit
     implementation (libs.retrofit)
     implementation (libs.converter.gson)
+    implementation (libs.converter.moshi)
     implementation (libs.okhttp)
     implementation (libs.logging.interceptor)
 
@@ -82,6 +83,9 @@ dependencies {
     implementation (libs.koin.androidx.compose)
     implementation (libs.koin.core)
     testImplementation (libs.koin.test)
+
+    //Moshi
+    implementation (libs.moshi.kotlin)
 
     //Navigation
     implementation (libs.androidx.navigation.compose)

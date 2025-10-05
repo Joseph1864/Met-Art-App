@@ -1,4 +1,4 @@
-package com.example.applicationtemplate
+package com.example.metartapp
 
 import org.junit.Test
 

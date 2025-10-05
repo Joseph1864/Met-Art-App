@@ -20,6 +20,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Application Template"
+rootProject.name = "Met Art App"
 include(":app")
  
