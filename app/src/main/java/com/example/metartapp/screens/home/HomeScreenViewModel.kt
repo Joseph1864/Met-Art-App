@@ -11,7 +11,7 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 class HomeScreenViewModel(
-    private val artworkRepository: ArtworkRepository = ArtworkRepository(),
+    private val artworkRepository: ArtworkRepository,
 ): ViewModel() {
 
     private val _viewState = MutableStateFlow(HomeScreenViewState())
