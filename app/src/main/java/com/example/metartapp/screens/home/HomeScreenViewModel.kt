@@ -17,16 +17,15 @@ class HomeScreenViewModel(
     private val _viewState = MutableStateFlow(HomeScreenViewState())
     val viewState = _viewState.asStateFlow()
 
-    fun fetchArtwork() {
-        viewModelScope.launch {
-            val artwork = artworkRepository.getRandomArtwork()
-            artwork?.let{
-                _viewState.update { currentState ->
-                    currentState.copy(artwork = it)
-                }
+    fun fetchArtwork() = viewModelScope.launch {
+        val artwork = artworkRepository.getRandomArtwork()
+        artwork?.let{
+            _viewState.update { currentState ->
+                currentState.copy(artwork = it)
             }
         }
     }
+
 
 }
 
