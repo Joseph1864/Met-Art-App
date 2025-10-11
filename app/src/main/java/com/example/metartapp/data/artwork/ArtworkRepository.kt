@@ -15,4 +15,13 @@ class ArtworkRepository(
             null
         }
     }
+
+    suspend fun getArtworkById(artworkId: Int): Artwork? {
+        return try {
+            val dto = api.getArtworkById(artworkId)
+            dto.toDomainModel()
+        } catch (e: Exception) {
+            null
+        }
+    }
 }
