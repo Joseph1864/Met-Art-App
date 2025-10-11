@@ -51,6 +51,7 @@ dependencies {
 
     //Compose and Material 3
     implementation (libs.androidx.material3)
+    implementation (libs.androidx.material.icons.extended)
     implementation (libs.androidx.ui.tooling.preview)
     debugImplementation (libs.androidx.ui.tooling)
     implementation(libs.androidx.lifecycle.viewmodel.compose)
@@ -71,6 +72,9 @@ dependencies {
     implementation (libs.androidx.room.ktx)
     ksp (libs.androidx.room.compiler)
     implementation (libs.androidx.room.paging)
+
+    //Coil
+    implementation(libs.coil)
 
     //Coroutines
 
