@@ -1,20 +1,28 @@
 package com.example.metartapp.screens.artwork
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Error
 import androidx.compose.material3.Card
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
+import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -33,32 +41,50 @@ import com.example.metartapp.data.artwork.Artwork
 import org.koin.androidx.compose.koinViewModel
 import org.koin.core.parameter.parametersOf
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ArtworkScreen(
     artworkId: Int,
+    onBackClick: () -> Unit,
 ) {
 
     val viewModel: ArtworkScreenViewModel = koinViewModel(parameters = {
         parametersOf(artworkId)
     })
-
     val viewState by viewModel.viewState.collectAsState()
 
-    when (viewState) {
-        is ArtworkScreenViewState.Content -> Content(
-            artwork = (viewState as ArtworkScreenViewState.Content).artwork
-        )
-        is ArtworkScreenViewState.Loading -> Loading(modifier = Modifier.fillMaxSize())
-        is ArtworkScreenViewState.Error -> Error(modifier = Modifier.fillMaxSize())
+    Scaffold(
+        topBar = {
+            TopAppBar(
+                title = {  },
+                navigationIcon = {
+                    IconButton(onClick = onBackClick) {
+                        Icon(Icons.AutoMirrored.Default.ArrowBack, contentDescription = null)
+                    }
+                },
+            )
+        }
+    ) { innerPadding ->
+        Box(modifier = Modifier.padding(innerPadding)) {
+            when (viewState) {
+                is ArtworkScreenViewState.Content -> Content(
+                    artwork = (viewState as ArtworkScreenViewState.Content).artwork
+                )
+                is ArtworkScreenViewState.Loading -> Loading(modifier = Modifier.fillMaxSize())
+                is ArtworkScreenViewState.Error -> Error(modifier = Modifier.fillMaxSize())
+            }
+        }
     }
-
 }
 
 @Composable
-fun Loading(modifier: Modifier = Modifier) = Box(
-    modifier = modifier
-        .fillMaxSize(),
-    contentAlignment = Alignment.Center,
+fun Loading(modifier: Modifier = Modifier) = Column(
+    modifier = modifier,
+    verticalArrangement = Arrangement.spacedBy(
+        space = 8.dp,
+        alignment = Alignment.CenterVertically,
+    ),
+    horizontalAlignment = Alignment.CenterHorizontally,
 ) {
     CircularProgressIndicator()
 }
@@ -186,11 +212,19 @@ fun Content(
 
 
 @Composable
-fun Error(modifier: Modifier = Modifier) = Box(
-    modifier = modifier
-        .fillMaxSize()
+fun Error(modifier: Modifier = Modifier) = Column(
+    modifier = modifier,
+    verticalArrangement = Arrangement.spacedBy(
+        space = 8.dp,
+        alignment = Alignment.CenterVertically,
+    ),
+    horizontalAlignment = Alignment.CenterHorizontally,
 ) {
-    Icons.Default.Error
+    Icon(
+        modifier = Modifier.size(64.dp),
+        imageVector = Icons.Default.Error,
+        contentDescription = null,
+    )
 }
 
 @Preview(showBackground = true)

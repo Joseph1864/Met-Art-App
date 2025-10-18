@@ -39,8 +39,6 @@ class ArtworkScreenViewModel(
         }
     }
 
-
-
 }
 
 sealed interface ArtworkScreenViewState {
