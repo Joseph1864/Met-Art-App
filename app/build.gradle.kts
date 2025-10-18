@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.compose.compiler)
     id("com.google.devtools.ksp")
+    alias(libs.plugins.kotlin.serialization)
 }
 
 android {
@@ -60,6 +61,9 @@ dependencies {
 
     //ConstraintLayout
     implementation (libs.androidx.constraintlayout.compose)
+
+    //Kotlinx Serialization
+    implementation(libs.kotlinx.serialization.json)
 
     //Retrofit
     implementation (libs.retrofit)

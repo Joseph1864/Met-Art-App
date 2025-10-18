@@ -6,14 +6,19 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
-fun HomeScreen() {
+fun HomeScreen(
+    onArtworkClick: (Int) -> Unit,
+) {
 
     val viewModel = koinViewModel<HomeScreenViewModel>()
+    val viewState by viewModel.viewState.collectAsStateWithLifecycle()
 
     Column(
         modifier = Modifier.fillMaxSize(),
@@ -21,9 +26,9 @@ fun HomeScreen() {
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Button(
-            onClick = { viewModel.fetchArtwork() },
+            onClick = { onArtworkClick((1..470000).random()) },
         ) {
-            Text(text = "Click me to get an art object!")
+            Text(text = "Show me a random artwork!")
         }
     }
 }
