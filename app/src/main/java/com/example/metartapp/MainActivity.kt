@@ -9,6 +9,7 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
 import com.example.metartapp.screens.artwork.ArtworkScreen
 import com.example.metartapp.screens.home.HomeScreen
+import com.example.metartapp.theme.MetArtAppTheme
 import kotlinx.serialization.Serializable
 
 class MainActivity: ComponentActivity() {
@@ -21,26 +22,29 @@ class MainActivity: ComponentActivity() {
         super.onCreate(savedInstanceState)
 
         setContent {
-            val navController = rememberNavController()
 
-            NavHost(
-                navController = navController,
-                startDestination = Home,
-            ) {
-                composable<Home> {
-                    HomeScreen(
-                        onArtworkClick = { artworkId ->
-                            navController.navigate(Artwork(artworkId = artworkId))
-                        }
-                    )
-                }
+            MetArtAppTheme {
+                val navController = rememberNavController()
 
-                composable<Artwork> { backStackEntry ->
-                    val artwork = backStackEntry.toRoute<Artwork>()
-                    ArtworkScreen(
-                        artworkId = artwork.artworkId,
-                        onBackClick = { navController.popBackStack() }
-                    )
+                NavHost(
+                    navController = navController,
+                    startDestination = Home,
+                ) {
+                    composable<Home> {
+                        HomeScreen(
+                            onArtworkClick = { artworkId ->
+                                navController.navigate(Artwork(artworkId = artworkId))
+                            }
+                        )
+                    }
+
+                    composable<Artwork> { backStackEntry ->
+                        val artwork = backStackEntry.toRoute<Artwork>()
+                        ArtworkScreen(
+                            artworkId = artwork.artworkId,
+                            onBackClick = { navController.popBackStack() }
+                        )
+                    }
                 }
             }
         }
