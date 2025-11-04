@@ -37,6 +37,9 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
+import coil.compose.AsyncImagePainter
+import coil.compose.SubcomposeAsyncImage
+import coil.compose.SubcomposeAsyncImageContent
 import com.example.metartapp.data.artwork.Artwork
 import org.koin.androidx.compose.koinViewModel
 import org.koin.core.parameter.parametersOf
@@ -102,16 +105,39 @@ fun Content(
     val imageUrl = artwork.primaryImageUrl ?: artwork.primaryImageSmallUrl
 
     if(!imageUrl.isNullOrEmpty()) {
-        AsyncImage(
-            model = artwork.primaryImageUrl,
+        SubcomposeAsyncImage(
+            model = imageUrl,
             contentDescription = null,
             contentScale = ContentScale.Crop,
             modifier = Modifier
                 .align(Alignment.CenterHorizontally)
                 .fillMaxWidth()
                 .height(400.dp)
-                .clip(RoundedCornerShape(32.dp)),
-        )
+                .clip(RoundedCornerShape(32.dp))
+        ) {
+            when (painter.state) {
+                is AsyncImagePainter.State.Loading -> {
+                    Box(
+                        modifier = Modifier
+                            .fillMaxSize(),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        CircularProgressIndicator()
+                    }
+                }
+
+                is AsyncImagePainter.State.Error -> {
+                    ImagePlaceholder(
+                        modifier = Modifier
+                            .fillMaxSize()
+                    )
+                }
+
+                else -> {
+                    SubcomposeAsyncImageContent()
+                }
+            }
+        }
     } else {
         ImagePlaceholder(
             modifier = Modifier
