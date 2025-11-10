@@ -9,6 +9,8 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Error
@@ -92,7 +94,8 @@ fun Content(
 ) = Column(
     modifier = modifier
         .fillMaxSize()
-        .padding(16.dp),
+        .verticalScroll(rememberScrollState())
+        .padding(horizontal = 16.dp),
 ) {
 
     val imageUrl = artwork.primaryImageUrl ?: artwork.primaryImageSmallUrl
