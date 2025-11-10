@@ -1,13 +1,15 @@
 package com.example.metartapp.screens.artwork
 
-import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Image
+import androidx.compose.material.icons.filled.ImageNotSupported
 import androidx.compose.material3.Card
 import androidx.compose.material3.Icon
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -17,19 +19,23 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun ImagePlaceholder(
     modifier: Modifier,
-    icon: ImageVector = Icons.Default.Image,
+    icon: ImageVector = Icons.Default.ImageNotSupported,
     ) = Card(
         modifier = modifier,
         shape = RoundedCornerShape(32.dp)
     ) {
-        Box(
+        Column(
             modifier = Modifier.fillMaxSize(),
-            contentAlignment = Alignment.Center,
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             Icon(
                 modifier = Modifier.size(48.dp),
                 imageVector = icon,
                 contentDescription = null,
+            )
+            Text(
+                text = "This artwork has no image"
             )
         }
 }
