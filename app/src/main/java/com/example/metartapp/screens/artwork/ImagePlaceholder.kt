@@ -1,5 +1,6 @@
 package com.example.metartapp.screens.artwork
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -20,8 +21,10 @@ import androidx.compose.ui.unit.dp
 fun ImagePlaceholder(
     modifier: Modifier,
     icon: ImageVector = Icons.Default.ImageNotSupported,
-    ) = Card(
-        modifier = modifier,
+    onClick: (() -> Unit)? = null,
+) = Card(
+        modifier = modifier
+            .clickable{ onClick?.invoke() },
         shape = RoundedCornerShape(32.dp)
     ) {
         Column(
