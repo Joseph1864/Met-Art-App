@@ -1,5 +1,6 @@
 package com.example.metartapp.screens.artwork
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -20,6 +21,7 @@ import coil.compose.SubcomposeAsyncImageContent
 fun Image(
     imageUrl: String,
     modifier: Modifier = Modifier,
+    onClick: (() -> Unit)? = null,
 ) {
     SubcomposeAsyncImage(
         model = imageUrl,
@@ -27,8 +29,8 @@ fun Image(
         contentScale = ContentScale.Crop,
         modifier = modifier
             .fillMaxWidth()
-            .height(400.dp)
-            .clip(RoundedCornerShape(32.dp))
+            .clickable{ onClick?.invoke() }
+            .clip(RoundedCornerShape(32.dp)),
     ) {
         when (painter.state) {
             is AsyncImagePainter.State.Loading -> {

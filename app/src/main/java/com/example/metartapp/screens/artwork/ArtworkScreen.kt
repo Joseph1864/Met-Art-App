@@ -103,7 +103,9 @@ fun Content(
     if(!imageUrl.isNullOrEmpty()) {
         Image(
             imageUrl = imageUrl,
-            modifier = Modifier.align(Alignment.CenterHorizontally)
+            modifier = Modifier
+                .align(Alignment.CenterHorizontally)
+                .height(400.dp),
         )
     } else {
         ImagePlaceholder(
